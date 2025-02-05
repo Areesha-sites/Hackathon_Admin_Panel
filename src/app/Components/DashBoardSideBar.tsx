@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { BiHomeAlt } from "react-icons/bi";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
@@ -14,31 +14,47 @@ import { GiCheckMark } from "react-icons/gi";
 import { FaRegComments } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa6";
 import { DashBoardSideBarProps } from "../../../types/ComponentsTypes";
+import { RxCross2 } from "react-icons/rx";
+import { CgMenuLeftAlt } from "react-icons/cg";
 const DashBoardSideBar: React.FC<DashBoardSideBarProps> = ({
   setActiveTab,
 }) => {
   const router = useRouter();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const handleLogout = () => {
     Cookies.remove("authToken");
     router.push("/login");
   };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="">
+      <button
+        onClick={toggleSidebar}
+        className="md:hidden absolute top-4 left-0 z-50 p-2  text-black rounded-lg"
+      >
+        {isSidebarOpen ? <RxCross2 size={23} /> : <CgMenuLeftAlt  size={23}/>}
+      </button>
       <div
         id="hs-sidebar-layout-splitter"
-        className="hs-overlay [--auto-close:sm] h-full sm:block sm:translate-x-0 sm:end-auto sm:bottom-0 w-64
-hs-overlay-open:translate-x-0
--translate-x-full transition-all duration-300 transform
-absolute top-[73px] start-0 bottom-0 z-[60]
-bg-black border-e border-gray-200 dark:bg-neutral-800 dark:border-neutral-700"
+        className={`hs-overlay [--auto-close:md] md:block md:translate-x-0 md:end-auto md:bottom-0 w-64
+          hs-overlay-open:translate-x-0
+          -translate-x-full transition-all duration-300 transform
+          absolute md:top-[73px] top-[68px] start-0 bottom-0 z-[60]
+          bg-black dark:bg-neutral-800 md:h-[800px] h-[600px] dark:border-neutral-700
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
         role="dialog"
         aria-label="Sidebar"
       >
         <div
-          className="relative flex h-full max-h-full pointer-events-none"
+          className="relative flex md:-full max-h-full pointer-events-none"
           data-hs-layout-splitter-horizontal-group
         >
-          <div className="pointer-events-auto">
+          <div className="pointer-events-auto w-full">
             <header className="p-4 flex justify-between items-center gap-x-2">
               <p
                 className="flex-none cursor-pointer font-semibold text-xl text-white focus:outline-none focus:opacity-80"

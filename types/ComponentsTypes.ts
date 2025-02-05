@@ -40,7 +40,6 @@ export interface NavbarProps {
   darkMode: boolean;
   setDarkMode: (value: boolean) => void;
   toggleTheme: () => void; 
-  // wishlist: any; // Replace 'any' with the actual type of wishlist data
   onSearch: (query: string) => void; 
 }
 export interface Notification {

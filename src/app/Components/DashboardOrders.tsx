@@ -97,28 +97,29 @@ const OrdersDashboard = () => {
     return 0;
   });
   return (
-    <div className="bg-black text-white p-6">
-      <div className="mb-6 flex gap-4">
-        <input
-          type="text"
-          placeholder="Search orders by customer name..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
-        />
-        <select
-          value={sortBy}
-          onChange={(e) =>
-            setSortBy(e.target.value as "orderDate" | "totalAmount" | "status")
-          }
-          className="p-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
-        >
-          <option value="orderDate">Sort by Order Date</option>
-          <option value="totalAmount">Sort by Total Amount</option>
-          <option value="status">Sort by Status</option>
-        </select>
-      </div>
-      <div className="grid grid-cols-8 font-bold text-lg py-3 border-b border-gray-700 text-center font-satoshiBold">
+    <div className="bg-black text-white p-6 min-h-screen">
+    <div className="mb-6 flex gap-4 flex-col md:flex-row">
+      <input
+        type="text"
+        placeholder="Search orders by customer name..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="w-full p-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+      />
+      <select
+        value={sortBy}
+        onChange={(e) =>
+          setSortBy(e.target.value as "orderDate" | "totalAmount" | "status")
+        }
+        className="p-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
+      >
+        <option value="orderDate">Sort by Order Date</option>
+        <option value="totalAmount">Sort by Total Amount</option>
+        <option value="status">Sort by Status</option>
+      </select>
+    </div>
+      <div className="overflow-x-auto">
+      <div className="grid grid-cols-8 font-bold text-lg py-3 border-b border-gray-700 text-center font-satoshiBold min-w-[800px]">
         <p>Order ID</p>
         <p>Customer Name</p>
         <p>Status</p>
@@ -133,7 +134,7 @@ const OrdersDashboard = () => {
           Array.from({ length: 5 }).map((_, index) => (
             <div
               key={index}
-              className="grid grid-cols-8 items-center py-4 border-b border-gray-700 text-center"
+              className="grid grid-cols-8 items-center py-4 border-b border-gray-700 text-center min-w-[800px]"
             >
               <div className="h-4 bg-gray-700 rounded w-3/4 mx-auto animate-pulse"></div>
               <div className="h-4 bg-gray-700 rounded w-1/2 mx-auto animate-pulse"></div>
@@ -151,7 +152,7 @@ const OrdersDashboard = () => {
           sortedOrders.map((order) => (
             <div
               key={order.orderId}
-              className="grid grid-cols-8 items-center gap-x-2 py-4 border-b border-gray-700 text-center"
+              className="grid grid-cols-8 items-center gap-x-2 py-4 border-b border-gray-700 text-center min-w-[800px]"
             >
               {editingOrderId === order.orderId ? (
                 <>
@@ -279,6 +280,7 @@ const OrdersDashboard = () => {
         )}
       </div>
     </div>
+  </div>
   );
 };
 

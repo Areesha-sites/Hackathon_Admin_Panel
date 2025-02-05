@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useRef, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
@@ -12,7 +12,6 @@ import {
   Legend,
   Filler,
   ChartOptions,
-  // ChartData,
 } from "chart.js";
 import annotationPlugin from "chartjs-plugin-annotation";
 
@@ -25,18 +24,9 @@ ChartJS.register(
   Tooltip,
   Legend,
   Filler,
-  annotationPlugin,
-  
+  annotationPlugin
 );
-// interface LineChartData extends ChartData<'line', number[], string> {
-//   datasets: {
-//     label: string;
-//     data: number[];
-//     borderColor: string;
-//     backgroundColor: string;
-//     fill: boolean;
-//   }[];
-// }
+
 export default function RevenueChart({
   data,
 }: {
@@ -46,6 +36,7 @@ export default function RevenueChart({
   const [chartGradient, setChartGradient] = useState<string | CanvasGradient>(
     "rgba(16, 185, 129, 0.3)"
   );
+
   useEffect(() => {
     if (chartRef.current) {
       const ctx = chartRef.current.ctx;
@@ -153,7 +144,7 @@ export default function RevenueChart({
             borderDash: [5, 5],
             label: {
               content: `Average: $${averageRevenue.toLocaleString()}`,
-              enabled: true,
+              display: true,
               position: "end" as const,
               backgroundColor: "rgba(17, 24, 39, 0.9)",
               color: "#10B981",
@@ -171,16 +162,19 @@ export default function RevenueChart({
             backgroundColor: "#10B981",
             borderColor: "#fff",
             borderWidth: 2,
-            label: {
-              content: `Max: $${maxRevenue.toLocaleString()}`,
-              enabled: true,
-              position: "top" as const,
-              backgroundColor: "rgba(17, 24, 39, 0.9)",
-              color: "#10B981",
-              font: {
-                size: 12,
-                weight: "bold" as const,
-              },
+          },
+          maxRevenueLabel: {
+            type: "label" as const,
+            xValue: maxRevenueDate,
+            yValue: maxRevenue * 1.05, 
+            content: `Max: $${maxRevenue.toLocaleString()}`,
+            display: true,
+            position: "center" as const, 
+            backgroundColor: "rgba(17, 24, 39, 0.9)",
+            color: "#10B981",
+            font: {
+              size: 12,
+              weight: "bold" as const,
             },
           },
         },
@@ -203,7 +197,6 @@ export default function RevenueChart({
         position: "left" as const,
         grid: {
           color: "#374151",
-          borderDash: [5, 5],
         },
         ticks: {
           color: "#D1D5DB",
@@ -240,7 +233,6 @@ export default function RevenueChart({
       },
     },
   };
-
   return (
     <div className="bg-gray-800 dark:bg-gray-900 shadow-xl rounded-xl p-6 border border-gray-700 w-full h-[600px] md:h-[700px] lg:h-[800px]">
       <Line ref={chartRef} data={chartData} options={options} />

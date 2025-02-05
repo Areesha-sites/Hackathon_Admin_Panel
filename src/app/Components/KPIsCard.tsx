@@ -1,4 +1,5 @@
 import { MdOutlineArrowUpward } from "react-icons/md";
+
 interface KPIsCard {
   title: string;
   value: string;
@@ -6,9 +7,10 @@ interface KPIsCard {
 }
 export default function KPIsCard({ title, value, icon }: KPIsCard) {
   return (
-    <div className="bg-gray-700 px-6 py-3 rounded-lg shadow-2xl flex flex-col justify-start">
+   <div className="flex justify-center items-center flex-wrap">
+     <div className="bg-gray-700 px-6 py-3 rounded-lg shadow-2xl flex flex-col justify-start h-44 w-52 xxl:w-60">
       <div className="bg-gray-800 rounded-full p-3 h-[40px] w-[40px] flex justify-center items-center">
-        <div className="">{icon}</div>
+        <div>{icon}</div>
       </div>
       <div className="mt-3">
         <p className="text-[20px] font-satoshiBold font-bold text-white">
@@ -25,5 +27,6 @@ export default function KPIsCard({ title, value, icon }: KPIsCard) {
         </div>
       </div>
     </div>
+   </div>
   );
 }

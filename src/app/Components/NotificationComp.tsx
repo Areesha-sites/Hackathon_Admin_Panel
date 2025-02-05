@@ -86,7 +86,7 @@ const NotificationBell = () => {
         animate={{ rotate: alert ? [0, 10, -10, 0] : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <FiBell className="text-gray-600 dark:text-gray-300 text-xl" />
+        <FiBell className="text-gray-600 dark:text-gray-300 text-xl xxl:text-[27px]" />
       </motion.div>
       {unreadCount > 0 && (
         <span className="absolute top-0 right-0 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
@@ -94,7 +94,7 @@ const NotificationBell = () => {
         </span>
       )}
       {isOpen && (
-        <div className="absolute right-0 w-64 bg-white dark:bg-gray-800 shadow-lg rounded-md p-3">
+        <div className="absolute left-[-100px] lg:left-[-230px] mt-1  w-48 lg:w-64 bg-white dark:bg-gray-800 shadow-lg rounded-md p-3">
           <h3 className="text-sm font-semibold mb-2">Notifications</h3>
           {notifications.length > 0 ? (
             notifications.map((notif, index) => (
