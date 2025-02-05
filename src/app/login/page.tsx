@@ -1,11 +1,14 @@
+// Login.js
 "use client";
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
+
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email === "shopco6@gmail.com" && password === "shopco456") {
@@ -15,6 +18,7 @@ export default function Login() {
       alert("Invalid credentials");
     }
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">

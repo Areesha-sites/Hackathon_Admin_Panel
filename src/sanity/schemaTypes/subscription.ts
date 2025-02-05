@@ -36,9 +36,41 @@ export default {
       },
     },
     {
+      name: "startDate",
+      type: "datetime",
+      title: "Subscription Start Date",
+    },
+    {
       name: "renewalDate",
       type: "datetime",
       title: "Renewal Date",
     },
+    {
+      name: "billingAddress",
+      type: "string",
+      title: "Billing Address",
+    },
+    {
+      name: "paymentMethod",
+      type: "string",
+      title: "Payment Method",
+    },
+    {
+      name: "transactionId",
+      type: "string",
+      title: "Transaction ID",
+    },
+    {
+      name: "history",
+      type: "array",
+      title: "Subscription History",
+      of: [{
+        type: "object",
+        fields: [
+          { name: "status", type: "string", title: "Status" },
+          { name: "date", type: "datetime", title: "Change Date" }
+        ]
+      }]
+    }
   ],
 };

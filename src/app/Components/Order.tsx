@@ -1,19 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
-interface OrderUser {
-  name: string;
-  email: string;
-}
-interface Order {
-  _id: string;
-  orderAmount: number;
-  orderDate: string;
-  status: string;
-  user: OrderUser;
-}
-interface OrdersProps {
-  orders: Order[];
-}
+import { Order } from "../../../types/ComponentsTypes";
+import { OrdersProps } from "../../../types/ComponentsTypes";
 const ordersQuery = groq`*[_type == "order"]{
  _id, 
  orderAmount,

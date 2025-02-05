@@ -18,13 +18,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-interface SalesDataItem {
-  date: string;
-  salesAmount: number;
-}
-interface SalesChartProps {
-  salesData: SalesDataItem[];
-}
+import { SalesChartProps } from "../../../types/ComponentsTypes";
 const SalesChart: React.FC<SalesChartProps> = ({ salesData }) => {
   const chartData = {
     labels: salesData.map((item) => item.date),

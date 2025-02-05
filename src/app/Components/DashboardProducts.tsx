@@ -2,15 +2,7 @@
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-interface ProductType {
-  _id: string;
-  imageUrl: string;
-  name: string;
-  category: string;
-  price: string;
-  discountPercent: string;
-  ratingReviews: string;
-}
+import { ProductType } from "../../../types/ComponentsTypes";
 const fetchProducts = async (category: string): Promise<ProductType[]> => {
   const products = await client.fetch(
     `*[_type=="${category}"]{
@@ -29,6 +21,8 @@ const ProductDashboard = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -56,6 +50,18 @@ const ProductDashboard = () => {
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredProducts.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+  const paginate = (pageNumber: number) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
   return (
     <div className="bg-black text-white p-6">
       <div className="mb-6">
@@ -67,7 +73,10 @@ const ProductDashboard = () => {
           className="w-full p-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
       </div>
-      <div className="grid grid-cols-6 font-bold text-lg py-3 border-b border-gray-700 text-center font-satoshiBold">
+      <div className="mb-4 text-center font-bold">
+        Total Products: {filteredProducts.length}
+      </div>
+      <div className="grid grid-cols-6 font-bold text-lg py-3 border-b border-gray-700 text-center">
         <p>Image</p>
         <p>Name</p>
         <p>Category</p>
@@ -77,23 +86,11 @@ const ProductDashboard = () => {
       </div>
       <div className="mt-4">
         {loading ? (
-          Array.from({ length: 5 }).map((_, index) => (
-            <div
-              key={index}
-              className="grid grid-cols-6 items-center py-4 border-b border-gray-700 text-center"
-            >
-              <div className="w-16 h-16 bg-gray-700 rounded-lg mx-auto animate-pulse"></div>
-              <div className="h-4 bg-gray-700 rounded w-3/4 mx-auto animate-pulse"></div>
-              <div className="h-4 bg-gray-700 rounded w-1/2 mx-auto animate-pulse"></div>
-              <div className="h-4 bg-gray-700 rounded w-1/2 mx-auto animate-pulse"></div>
-              <div className="h-4 bg-gray-700 rounded w-1/2 mx-auto animate-pulse"></div>
-              <div className="h-4 bg-gray-700 rounded w-1/2 mx-auto animate-pulse"></div>
-            </div>
-          ))
-        ) : filteredProducts.length === 0 ? (
+          <p className="text-center">Loading...</p>
+        ) : currentItems.length === 0 ? (
           <div className="text-center text-white">No products found</div>
         ) : (
-          filteredProducts.map((product) => (
+          currentItems.map((product) => (
             <div
               key={product._id}
               className="grid grid-cols-6 items-center py-4 border-b border-gray-700 text-center"
@@ -105,28 +102,50 @@ const ProductDashboard = () => {
                 alt={product.name}
                 className="w-16 h-16 object-cover mx-auto rounded-lg"
               />
-              <p className="font-semibold font-satoshi">{product.name}</p>
-              <p className="text-gray-400 text-sm font-satoshi">
-                {product.category}
+              <p className="font-semibold">{product.name}</p>
+              <p className="text-gray-400 text-sm">{product.category}</p>
+              <p className="text-white font-bold">${product.price}</p>
+              <p className="text-red-500">
+                {product.discountPercent
+                  ? `${product.discountPercent}% Off`
+                  : "-"}
               </p>
-              <p className="text-white font-bold font-satoshi">
-                ${product.price}
-              </p>
-              {product.discountPercent ? (
-                <p className="text-red-500 font-satoshi">
-                  {product.discountPercent}% Off
-                </p>
-              ) : (
-                <p className="text-red-500 font-satoshi">-</p>
-              )}
-              <p className="text-yellow-400 font-satoshi">
-                ⭐ {product.ratingReviews}
-              </p>
+              <p className="text-yellow-400">⭐ {product.ratingReviews}</p>
             </div>
           ))
         )}
       </div>
+      <div className="flex justify-center items-center mt-6 space-x-2">
+        <button
+          onClick={() => paginate(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 rounded-lg border-[1px] border-white/20 text-gray-400 disabled:opacity-50"
+        >
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            className={`mx-1 px-4 py-2 rounded-lg ${
+              currentPage === index + 1
+                ? "bg-gray-700 text-white"
+                : "bg-gray-800 text-gray-400"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => paginate(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 rounded-lg border-[1px] border-white/20 text-gray-400 disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
+
 export default ProductDashboard;

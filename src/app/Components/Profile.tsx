@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import {
@@ -45,7 +46,9 @@ const DashboardProfile: React.FC = () => {
   return (
     <div className="bg-black text-white flex flex-col items-center w-full max-w-full mx-auto rounded-lg shadow-lg overflow-hidden">
       <div className="relative w-full">
-        <img
+        <Image
+          height={160}
+          width={100}
           src={bannerImage || "/banner-default.jpg"}
           alt="Banner"
           className="w-full h-40 object-cover"
@@ -61,7 +64,9 @@ const DashboardProfile: React.FC = () => {
         </label>
       </div>
       <div className="relative -mt-14">
-        <img
+        <Image
+          height={112}
+          width={112}
           src={profileImage || "/profile-default.jpg"}
           alt="Profile"
           className="w-28 h-28 rounded-full border-4 border-white object-cover"

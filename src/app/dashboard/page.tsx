@@ -21,17 +21,33 @@ import DashboardProfile from "../Components/Profile";
 import ProductDashboard from "../Components/DashboardProducts";
 import CustomerDashboard from "../Components/DashboardCustomer";
 import OrdersDashboard from "../Components/DashboardOrders";
+import Navbar from "../Components/Navbar";
+import { getRevenueData } from "../Components/FetchReveneu";
+import RevenueChart from "../Components/RevenueChart";
+import RevenueTable from "../Components/RevenueTable";
+import SubscriptionManagement from "../Components/Subscription";
+import ReviewsDashboard from "../Components/ReviewsDashboard";
+import { Component } from "../Components/VisitorsChart";
 const userQuery = groq`*[_type == "user"] { _id, name, email }`;
 const orderQuery = groq`*[_type == "order"] { _id, orderAmount, orderDate, status }`;
 const topSellingQuery = groq`*[_type == "topSelling"] { _id, name }`;
-// const salesQuery = groq`*[_type == "salesData"] { _id, salesAmount, salesDate }`;
-export default function Dashboard() {
+ function Dashboard() {
   const [users, setUsers] = useState<UserTypes[]>([]);
   const [orders, setOrders] = useState<OrderTypes[]>([]);
   const [mostPopularProduct, setMostPopularProduct] = useState("Loading...");
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const router = useRouter();
   const [isAuth, setIsAuth] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [revenue, setRevenue] = useState([]);
+  const [activeTabs, setActiveTabs] = useState("chart");
+  useEffect(() => {
+    async function fetchRevenue() {
+      const data = await getRevenueData();
+      setRevenue(data);
+    }
+    fetchRevenue();
+  }, []);
   useEffect(() => {
     async function fetchData() {
       const usersData: UserTypes[] = await client.fetch(userQuery);
@@ -83,8 +99,12 @@ export default function Dashboard() {
     );
   }
   return (
+   <div className="">
+     <div className={darkMode ? "dark" : ""}>
+      <Navbar toggleTheme={() => setDarkMode(!darkMode)} darkMode={darkMode} />
+    </div>
     <div className="flex min-h-screen">
-      <aside className="w-64">
+      <aside className="w-64 ">
         <DashBoardSideBar setActiveTab={setActiveTab} />
       </aside>
       <div className="flex-1 p-6">
@@ -164,7 +184,83 @@ export default function Dashboard() {
             <OrdersDashboard />
           </div>
         )}
+        {activeTab === "revenue" && (
+          <div className="flex flex-col w-full">
+          <div className="flex justify-between items-center w-full mb-6">
+            <h1 className="text-3xl font-extrabold font-integralCf tracking-wider">
+              Revenue
+            </h1>
+    
+            <div className="relative right-0">
+              <ul className="flex flex-wrap px-1.5 py-1.5 list-none rounded-md bg-gray-100">
+                <li className="flex-auto text-center">
+                  <button
+                    className={`w-full px-4 py-2 text-sm rounded-md ${
+                      activeTabs === "chart"
+                        ? "bg-white text-black shadow"
+                        : "bg-inherit text-slate-600"
+                    }`}
+                    onClick={() => setActiveTabs("chart")}
+                  >
+                    Chart
+                  </button>
+                </li>
+                <li className="flex-auto text-center">
+                  <button
+                    className={`w-full px-4 py-2 text-sm rounded-md ${
+                      activeTabs === "table"
+                        ? "bg-white text-black shadow"
+                        : "bg-inherit text-slate-600"
+                    }`}
+                    onClick={() => setActiveTabs("table")}
+                  >
+                    Table
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+              <div className=" mt-0">
+            {activeTabs === "chart" && (
+              <div className="w-full flex justify-center items-center">
+                <RevenueChart data={revenue} />
+              </div>
+            )}
+            {activeTabs === "table" && (
+              <div className="w-full flex justify-center items-center">
+                <RevenueTable />
+              </div>
+            )}
+          </div>
+        </div>
+        )}
+        {activeTab === "subscription" && (
+          <div className="">
+            <h1 className="text-3xl font-extrabold font-integralCf tracking-wider mb-6">
+            Subscription
+            </h1>
+            <SubscriptionManagement />
+          </div>
+        )}
+        {activeTab === "reviews" && (
+          <div className="">
+            <h1 className="text-3xl font-extrabold font-integralCf tracking-wider mb-6">
+            Reviews
+            </h1>
+            <ReviewsDashboard/>
+          </div>
+        )}
+         {activeTab === "visitors" && (
+          <div>
+            <h1 className="text-3xl font-extrabold font-integralCf tracking-wider mb-6">
+            visitors
+            </h1>
+            <Component />
+          </div>
+        )}
       </div>
     </div>
+   </div>
   );
 }
+export default Dashboard

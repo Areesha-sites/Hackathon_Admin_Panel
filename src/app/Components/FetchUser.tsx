@@ -1,20 +1,14 @@
 import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
-interface User {
-  _id: string;
-  name: string;
-  email: string;
-}
-interface UsersProps {
-  users: User[];
-}
+import { UserTypes } from "../../../types/ComponentsTypes";
+import { UsersProps } from "../../../types/ComponentsTypes";
 const query = groq`*[_type == "user"]{
 _id,
  name,
  email
 }`;
 export async function getServerSideProps() {
-  const users: User[] = await client.fetch(query);
+  const users: UserTypes[] = await client.fetch(query);
 
   return {
     props: { users },
