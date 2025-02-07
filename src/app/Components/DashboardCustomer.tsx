@@ -80,21 +80,18 @@ const CustomerDashboard = () => {
     customer.fullName.toLowerCase().includes(searchQuery.toLowerCase())
   );
   return (
-<div className="bg-black text-white p-6">
-  {/* Search Input */}
+<div className="bg-gray-800 text-white p-6">
   <div className="mb-6">
     <input
       type="text"
       placeholder="Search customers..."
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
-      className="w-full p-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+      className="w-full p-2 rounded-lg bg-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
     />
   </div>
 
-  {/* Table Container with Horizontal Scroll for Small and Medium Screens */}
   <div className="overflow-x-auto lg:overflow-x-visible">
-    {/* Table Header */}
     <div className="grid grid-cols-6 font-bold text-lg py-3 border-b border-gray-700 text-center font-satoshiBold min-w-[800px] lg:min-w-0">
       <p>Name</p>
       <p>Phone</p>
@@ -104,10 +101,8 @@ const CustomerDashboard = () => {
       <p>Actions</p>
     </div>
 
-    {/* Table Body */}
     <div className="mt-4 min-w-[800px] lg:min-w-0">
       {loading ? (
-        // Loading Skeleton
         Array.from({ length: 5 }).map((_, index) => (
           <div
             key={index}
@@ -122,17 +117,14 @@ const CustomerDashboard = () => {
           </div>
         ))
       ) : filteredCustomers.length === 0 ? (
-        // No Customers Found
         <div className="text-center text-white">No customers found</div>
       ) : (
-        // Customer Rows
         filteredCustomers.map((customer) => (
           <div
             key={customer._id}
             className="grid grid-cols-6 gap-x-2 items-center py-4 border-b border-gray-700 text-center"
           >
             {editingId === customer._id ? (
-              // Edit Mode
               <>
                 <input
                   type="text"
@@ -197,7 +189,6 @@ const CustomerDashboard = () => {
                 </button>
               </>
             ) : (
-              // Display Mode
               <>
                 <p className="font-semibold font-satoshi">{customer.fullName}</p>
                 <p className="text-gray-400 text-sm font-satoshi">

@@ -62,20 +62,18 @@ const ProductDashboard = () => {
       setCurrentPage(pageNumber);
     }
   };
-
     return (
-  
       <div className="flex justify-center items-center w-full lg:ml-[-20px]">
       <div className="sm:w-[355px] md:w-[480px] lg:w-full w-[310px] overflow-hidden px-0">
         <div className="md:ml-[-30px]">
-          <div className="bg-black text-white p-6 md:p-14 lg:p-8">
+          <div className="bg-gray-800 text-white p-6 md:p-14 lg:p-8">
             <div className="mb-6 ml-3">
               <input
                 type="text"
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full p-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="w-full p-2 rounded-lg bg-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
               />
             </div>
     
@@ -141,7 +139,7 @@ const ProductDashboard = () => {
                     onClick={() => paginate(index + 1)}
                     className={`mx-1 px-4 py-2 rounded-lg ${
                       currentPage === index + 1
-                        ? "bg-gray-700 text-white"
+                        ? "bg-gray-500 text-white"
                         : "bg-gray-800 text-gray-400"
                     }`}
                   >

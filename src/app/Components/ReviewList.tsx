@@ -25,7 +25,7 @@ const ReviewsListComponent: React.FC<ReviewsListComponentProps> = ({
   return (
     <div
       style={{
-        backgroundColor: "#1e1e1e",
+        backgroundColor: "#374151",
         color: "#fff",
         padding: "20px",
         fontFamily: "Arial, sans-serif",
@@ -46,7 +46,7 @@ const ReviewsListComponent: React.FC<ReviewsListComponentProps> = ({
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{
             padding: "10px",
-            backgroundColor: "#333",
+            backgroundColor: "#475569",
             color: "#fff",
             border: "1px solid #555",
             borderRadius: "4px",
@@ -63,18 +63,18 @@ const ReviewsListComponent: React.FC<ReviewsListComponentProps> = ({
               marginBottom: "20px",
               borderBottom: "1px solid #444",
               paddingBottom: "10px",
-              backgroundColor: "#2e2e2e",
+              backgroundColor: "#475569",
               padding: "15px",
               borderRadius: "8px",
             }}
           >
-            <h3 style={{ marginBottom: "10px", color: "#4CAF50" }}>
+            <h3 style={{ marginBottom: "10px", color: "#8FD14F" }}>
               {review.name}
             </h3>
-            <p style={{ marginBottom: "10px", color: "#ccc" }}>
+            <p style={{ marginBottom: "10px", color: "#f8fafc" }}>
               {review.description}
             </p>
-            <p style={{ color: "#888" }}>
+            <p style={{ color: "#d4d4d8" }}>
               Date: {new Date(review.date).toLocaleDateString()}
             </p>
           </div>

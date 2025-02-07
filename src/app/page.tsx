@@ -28,6 +28,8 @@ import RevenueTable from "./Components/RevenueTable";
 import SubscriptionManagement from "./Components/Subscription";
 import ReviewsDashboard from "./Components/ReviewsDashboard";
 import { Component } from "./Components/VisitorsChart";
+import ShipmentsDashboard from "./Components/DashboardShipments";
+import UsersDashboard from "./Components/DashboardUsers";
 const userQuery = groq`*[_type == "user"] { _id, name, email }`;
 const orderQuery = groq`*[_type == "order"] { _id, orderAmount, orderDate, status }`;
 const topSellingQuery = groq`*[_type == "topSelling"] { _id, name }`;
@@ -117,10 +119,10 @@ function Dashboard() {
         <div>
           {activeTab === "dashboard" && (
             <div>
-              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center w-full font-extrabold font-integralCf tracking-wider mb-2 lg:ml-[-20px] md:text-right lg:text-center md:ml-[-50px] mt-4 xl:ml-[-150px]">
+              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center w-full font-extrabold font-integralCf tracking-wider mb-2 lg:ml-[-20px] md:text-right lg:text-center md:ml-[-50px] mt-4 xl:ml-[-150px] dark:text-black">
                 Analytics Dashboard
               </h1>
-              <p className="text-gray-600 mb-8 font-satoshi md:text-[16px] xxl:text-[18px] text-[14px] w-full text-center md:text-right md:ml-[-150px] lg:text-center lg:ml-[-70px] xl:ml-[-200px]">
+              <p className="text-gray-600 mb-8 font-satoshi md:text-[16px] dark:text-black xxl:text-[18px] text-[14px] w-full text-center md:text-right md:ml-[-150px] lg:text-center lg:ml-[-70px] xl:ml-[-200px]">
                 Welcome to my SHOP.CO analytics dashboard.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 md:ml-72">
@@ -159,7 +161,7 @@ function Dashboard() {
           )}
           {activeTab === "calendar" && (
             <div>
-              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center lg:ml-[-130px] xl:ml-[-230px] w-full font-extrabold font-integralCf tracking-wider mb-5 mt-8">
+              <h1 className="md:text-3xl text-[28px] dark:text-black xxl:text-[38px] leading-[26px] text-center lg:ml-[-130px] xl:ml-[-230px] w-full font-extrabold font-integralCf tracking-wider mb-5 mt-8">
                 Calendar
               </h1>
               <div className="px-4 md:ml-72">
@@ -169,7 +171,7 @@ function Dashboard() {
           )}
           {activeTab === "profile" && (
             <div>
-              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center lg:ml-[-130px] xl:ml-[-230px] w-full font-extrabold font-integralCf tracking-wider mb-5 mt-8">
+              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center lg:ml-[-130px] xl:ml-[-230px] w-full font-extrabold font-integralCf tracking-wider mb-5 mt-8 dark:text-black">
                 Profile
               </h1>
               <div className="px-4 md:ml-72">
@@ -179,7 +181,7 @@ function Dashboard() {
           )}
           {activeTab === "product" && (
             <div>
-              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center lg:ml-[-130px] xl:ml-[-230px] w-full font-extrabold font-integralCf tracking-wider mb-5 mt-8">
+              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center lg:ml-[-130px] xl:ml-[-230px] w-full font-extrabold font-integralCf tracking-wider mb-5 mt-8 dark:text-black">
                 Products
               </h1>
               <div className="px-4 md:ml-72">
@@ -189,7 +191,7 @@ function Dashboard() {
           )}
           {activeTab === "customers" && (
             <div>
-              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center lg:ml-[-130px] xl:ml-[-230px] w-full font-extrabold font-integralCf tracking-wider mb-5 mt-8">
+              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] text-center lg:ml-[-130px] xl:ml-[-230px] w-full font-extrabold font-integralCf tracking-wider mb-5 mt-8 dark:text-black">
                 Customers
               </h1>
               <div className="px-4 md:ml-64">
@@ -199,7 +201,7 @@ function Dashboard() {
           )}
           {activeTab === "orders" && (
             <div>
-              <h1 className=" font-extrabold font-integralCf tracking-wider md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] md:ml-72 text-center md:text-left mt-4 mb-6">
+              <h1 className=" font-extrabold dark:text-black font-integralCf tracking-wider md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] md:ml-72 text-center md:text-left mt-4 mb-6">
                 Orders
               </h1>
               <div className=" px-4 md:ml-64">
@@ -210,7 +212,7 @@ function Dashboard() {
           {activeTab === "revenue" && (
             <div className="flex flex-col w-full">
               <div className="flex justify-between md:flex-row flex-col items-center w-full mb-6">
-                <h1 className=" font-extrabold font-integralCf tracking-wider md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] md:ml-72 text-center md:text-left mt-4">
+                <h1 className=" font-extrabold dark:text-black font-integralCf tracking-wider md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] md:ml-72 text-center md:text-left mt-4">
                   Revenue
                 </h1>
 
@@ -263,7 +265,7 @@ function Dashboard() {
           )}
           {activeTab === "subscription" && (
             <div className="">
-              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] font-extrabold font-integralCf tracking-wider mb-6 md:ml-72 text-center md:text-left mt-4">
+              <h1 className="md:text-3xl dark:text-black text-[28px] xxl:text-[38px] leading-[26px] font-extrabold font-integralCf tracking-wider mb-6 md:ml-72 text-center md:text-left mt-4">
                 Subscription
               </h1>
               <div className=" px-4 md:ml-64">
@@ -273,7 +275,7 @@ function Dashboard() {
           )}
           {activeTab === "reviews" && (
             <div className="flex flex-col ">
-              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] font-extrabold font-integralCf tracking-wider mb-6 mt-9 md:ml-72 text-center md:text-left">
+              <h1 className="md:text-3xl dark:text-black text-[28px] xxl:text-[38px] leading-[26px] font-extrabold font-integralCf tracking-wider mb-6 mt-9 md:ml-72 text-center md:text-left">
                 Reviews
               </h1>
               <div className=" px-4 md:ml-64">
@@ -283,11 +285,31 @@ function Dashboard() {
           )}
           {activeTab === "visitors" && (
             <div className="w-full">
-              <h1 className="md:text-3xl text-[28px] xxl:text-[38px] leading-[26px] mt-4 text-center md:text-left font-extrabold font-integralCf tracking-wider mb-6  md:ml-72">
+              <h1 className="md:text-3xl dark:text-black text-[28px] xxl:text-[38px] leading-[26px] mt-4 text-center md:text-left font-extrabold font-integralCf tracking-wider mb-6  md:ml-72">
                 visitors
               </h1>
               <div className=" px-4 md:ml-64">
                 <Component />
+              </div>
+            </div>
+          )}
+          {activeTab === "shipment" && (
+            <div className="w-full">
+              <h1 className="md:text-3xl dark:text-black text-[28px] xxl:text-[38px] leading-[26px] mt-4 text-center md:text-left font-extrabold font-integralCf tracking-wider mb-6  md:ml-72">
+                Shipment
+              </h1>
+              <div className=" px-4 md:ml-64">
+               <ShipmentsDashboard/>
+              </div>
+            </div>
+          )}
+          {activeTab === "users" && (
+            <div className="w-full">
+              <h1 className="md:text-3xl dark:text-black text-[28px] xxl:text-[38px] leading-[26px] mt-4 text-center md:text-left font-extrabold font-integralCf tracking-wider mb-6  md:ml-72">
+                Users
+              </h1>
+              <div className=" px-4 md:ml-64">
+              <UsersDashboard/>
               </div>
             </div>
           )}

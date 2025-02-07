@@ -9,7 +9,6 @@ _id,
 }`;
 export async function getServerSideProps() {
   const users: UserTypes[] = await client.fetch(query);
-
   return {
     props: { users },
   };

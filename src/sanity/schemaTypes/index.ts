@@ -17,6 +17,8 @@ import customers from "./customers";
 import subscription from "./subscription";
 import reveneu from "./reveneu";
 import notifications from "./notifications";
+import shipment from "./shipment";
+import checkUser from "./checkUser";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     casual,
@@ -36,6 +38,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     order,
     subscription,
     reveneu,
-    notifications
+    notifications,
+    shipment,
+    checkUser,
   ],
 };

@@ -63,14 +63,14 @@ export default function RevenueTable() {
     setEditingRow(null);
   };
   return (
-    <div className="bg-black dark:bg-gray-900 shadow-lg rounded-xl p-6 border border-gray-200 dark:border-gray-700 overflow-x-auto w-full">
+    <div className="bg-gray-800 dark:bg-gray-900 shadow-lg rounded-xl p-6 border border-gray-200 dark:border-gray-700 overflow-x-auto w-full">
       <h3 className="text-xl font-semibold text-white dark:text-white mb-4 font-satoshiBold">
         Revenue Details
       </h3>
       <input
         type="text"
         placeholder="Search..."
-        className="mb-4 p-2 border-none outline-none rounded-lg w-full bg-gray-800 dark:bg-gray-800 text-white dark:text-white"
+        className="mb-4 p-2 border-none outline-none rounded-lg w-full bg-gray-600 dark:bg-gray-800 text-white dark:text-white"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />

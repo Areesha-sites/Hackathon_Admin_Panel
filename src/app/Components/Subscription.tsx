@@ -51,14 +51,14 @@ const SubscriptionManagement = () => {
     }
   };
   return (
-    <div className="bg-black text-white p-6 min-h-screen">
+    <div className="bg-gray-800 text-white p-6 min-h-screen">
       <div className="mb-6">
         <input
           type="text"
           placeholder="Search subscriptions..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+          className="w-full p-2 rounded-lg bg-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
       </div>
       <div className="mb-4 text-end font-satoshiBold text-[16px] text-gray-500">
@@ -67,7 +67,7 @@ const SubscriptionManagement = () => {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-gray-800">
+            <tr className="bg-gray-600">
               <th className="p-3 text-left">Name</th>
               <th className="p-3 text-left">Email</th>
               <th className="p-3 text-left">Plan</th>

@@ -112,3 +112,20 @@ export interface RevenueData {
   totalSales: number;
   totalRevenue: number;
 }
+export interface ShipmentTypes {
+  _id: string;
+  orderId: string;
+  userName: string;
+  userEmail: string;
+  userPassword: string;
+  countryCode: string;
+  userPhone: string;
+  shippingAddress: string;
+  status: string;
+  trackingNumber: string;
+  shipmentDate: string;
+  deliveryDate: string;
+  carrier: string;
+  createdAt: string;
+  updatedAt: string;
+}

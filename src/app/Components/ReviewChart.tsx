@@ -39,7 +39,7 @@ const ChartComponent: React.FC<ChartComponentProps> = ({ reviews }) => {
     } as const, 
   };
   return (
-    <div style={{ backgroundColor: '#1e1e1e', color: '#fff', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ backgroundColor: '#334155', color: '#fff', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h2 style={{ marginBottom: '20px' }}>Reviews by Date</h2>
       <Bar data={chartData} options={chartOptions} />
     </div>

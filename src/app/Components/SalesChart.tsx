@@ -112,7 +112,7 @@ const SalesChart: React.FC<SalesChartProps> = ({ salesData }) => {
       className="bg-white p-4 rounded-lg shadow-lg"
       style={{ height: "300px" }}
     >
-      <h2 className="text-xl font-semibold mb-2">Sales Over Time</h2>
+      <h2 className="text-xl font-semibold mb-2 dark:text-black">Sales Over Time</h2>
       <div style={{ height: "200px" }}>
         <Line data={chartData} options={chartOptions} />
       </div>

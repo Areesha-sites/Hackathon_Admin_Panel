@@ -45,7 +45,7 @@ const DashboardProfile: React.FC = () => {
   };
   return (
   <div className="px-2 sm:ml-[-7px] lg:ml-[-30px] xl:ml-0 flex justify-center xl:justify-end items-center w-full">
-      <div className="bg-black text-white flex flex-col items-center w-full max-w-full mx-auto rounded-lg shadow-lg overflow-hidden">
+      <div className="bg-gray-800 text-white flex flex-col items-center w-full max-w-full mx-auto rounded-lg shadow-lg overflow-hidden">
       <div className="relative w-full">
         <Image
           height={160}

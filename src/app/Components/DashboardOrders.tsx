@@ -97,21 +97,21 @@ const OrdersDashboard = () => {
     return 0;
   });
   return (
-    <div className="bg-black text-white p-6 min-h-screen">
+    <div className="bg-gray-800 text-white p-6 min-h-screen">
     <div className="mb-6 flex gap-4 flex-col md:flex-row">
       <input
         type="text"
         placeholder="Search orders by customer name..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="w-full p-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+        className="w-full p-2 rounded-lg bg-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
       />
       <select
         value={sortBy}
         onChange={(e) =>
           setSortBy(e.target.value as "orderDate" | "totalAmount" | "status")
         }
-        className="p-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
+        className="p-2 rounded-lg bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
       >
         <option value="orderDate">Sort by Order Date</option>
         <option value="totalAmount">Sort by Total Amount</option>

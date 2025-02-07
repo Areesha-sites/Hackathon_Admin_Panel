@@ -16,6 +16,8 @@ import { FaUsers } from "react-icons/fa6";
 import { DashBoardSideBarProps } from "../../../types/ComponentsTypes";
 import { RxCross2 } from "react-icons/rx";
 import { CgMenuLeftAlt } from "react-icons/cg";
+import { FaTruck } from "react-icons/fa6";
+import { LuUsers } from "react-icons/lu";
 const DashBoardSideBar: React.FC<DashBoardSideBarProps> = ({
   setActiveTab,
 }) => {
@@ -157,6 +159,24 @@ const DashBoardSideBar: React.FC<DashBoardSideBarProps> = ({
                     >
                       <FaUsers className="h-[16px] w-[16px] text-white" />
                       Visitors
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      className="flex items-center gap-x-3 cursor-pointer py-2 px-2.5 text-sm text-white rounded-lg hover:bg-gray-700"
+                      onClick={() => setActiveTab("shipment")}
+                    >
+                      <FaTruck className="h-[16px] w-[16px] text-white" />
+                      Shipments
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      className="flex items-center gap-x-3 cursor-pointer py-2 px-2.5 text-sm text-white rounded-lg hover:bg-gray-700"
+                      onClick={() => setActiveTab("users")}
+                    >
+                      <LuUsers className="h-[16px] w-[16px] text-white" />
+                      Users
                     </p>
                   </li>
                   <li onClick={handleLogout}>

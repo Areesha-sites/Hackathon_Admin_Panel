@@ -33,13 +33,12 @@ const NotificationBell = () => {
     fetchNotifications();
     const subscription = client
       .listen(
-        `*[_type in ["casual", "customerComments", "customer", "faq", "kids", "men", "newArrivals", "order", "products", "revenue", "salesData", "subscription", "topSelling", "user", "guide", "women"]]`
+        `*[_type in ["casual", "customerComments", "customer", "faq", "kids", "men", "newArrivals", "order", "products", "revenue", "salesData", "subscription", "topSelling", "user", "guide", "women", "shipment", "checkUser"]]`
       )
       .subscribe((update: any) => {
         if (!update.result?._id) return;
         const result: Result = update.result;
         const schemaType = result._type;
-        // const schemaName = result.name || result.title || result._id;
         const amount = result.amount ? `$${result.amount}` : "Unknown Amount";
         const customer = result.customer || "Unknown Client";
         const newMessage = `New ${schemaType} added: ${amount} from ${customer}`;
